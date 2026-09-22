@@ -14,14 +14,7 @@ export default function Live2D() {
   const petLink = siteConfig('WIDGET_PET_LINK')
   const petSwitchTheme = siteConfig('WIDGET_PET_SWITCH_THEME')
 
-  // FSM static image, no Live2D loading needed
-
-  function handleClick() {
-    if (petSwitchTheme) {
-      switchTheme()
-    }
-  }
-
+  // FSM static image, no interaction
   if (!showPet) {
     return <></>
   }
@@ -31,9 +24,7 @@ export default function Live2D() {
       src='/images/fsm.png'
       alt='FSM'
       width='200'
-      onClick={handleClick}
-      className='cursor-pointer mx-auto my-4 opacity-80 hover:opacity-100 transition-opacity'
-      title='点击切换主题'
+      className='mx-auto my-4 opacity-80'
     />
   )
 }

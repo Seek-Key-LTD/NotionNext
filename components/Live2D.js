@@ -14,25 +14,7 @@ export default function Live2D() {
   const petLink = siteConfig('WIDGET_PET_LINK')
   const petSwitchTheme = siteConfig('WIDGET_PET_SWITCH_THEME')
 
-  useEffect(() => {
-    if (showPet && !isMobile()) {
-      Promise.all([
-        loadExternalResource(
-          'https://cdn.jsdelivr.net/gh/stevenjoezhang/live2d-widget@latest/live2d.min.js',
-          'js'
-        )
-      ]).then(e => {
-        if (typeof window?.loadlive2d !== 'undefined') {
-          // https://github.com/xiazeyu/live2d-widget-models
-          try {
-            loadlive2d('live2d', petLink)
-          } catch (error) {
-            console.error('读取PET模型', error)
-          }
-        }
-      })
-    }
-  }, [theme])
+  // FSM static image, no Live2D loading needed
 
   function handleClick() {
     if (petSwitchTheme) {
@@ -45,14 +27,13 @@ export default function Live2D() {
   }
 
   return (
-    <canvas
-      id='live2d'
-      width='280'
-      height='250'
+    <img
+      src='/images/fsm.png'
+      alt='FSM'
+      width='200'
       onClick={handleClick}
-      className='cursor-grab'
-      onMouseDown={e => e.target.classList.add('cursor-grabbing')}
-      onMouseUp={e => e.target.classList.remove('cursor-grabbing')}
+      className='cursor-pointer mx-auto my-4 opacity-80 hover:opacity-100 transition-opacity'
+      title='点击切换主题'
     />
   )
 }
